@@ -29,14 +29,14 @@ public Parcel() {
 
 public Parcel(String trackingNumber, String senderName,
 String receiverName, Double weightKg) {
-this.trackingNumber = trackingNumber;
-this.senderName = senderName;
-this.receiverName = receiverName;
-this.weightKg = weightKg;
+     this.trackingNumber = trackingNumber;
+     this.senderName = senderName;
+     this.receiverName = receiverName;
+     this.weightKg = weightKg;
 }
 
 public Long getId() {
-return id;
+    return id;
 }
 
 public String getTrackingNumber() {
