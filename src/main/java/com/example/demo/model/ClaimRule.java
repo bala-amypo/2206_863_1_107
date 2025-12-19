@@ -18,8 +18,7 @@ private Double weight;
 @ManyToMany(mappedBy = "appliedRules")
 private Set<DamageClaim> claims;
 
-public ClaimRule() {
-}
+public ClaimRule() {}
 
 public ClaimRule(String ruleName, String conditionExpression, Double weight) {
 this.ruleName = ruleName;
@@ -27,7 +26,4 @@ this.conditionExpression = conditionExpression;
 this.weight = weight;
 }
 
-public Double getWeight() {
-return weight;
-}
 }

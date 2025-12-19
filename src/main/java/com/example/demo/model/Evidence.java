@@ -12,23 +12,17 @@ public class Evidence {
 private Long id;
 
 @ManyToOne
-@JoinColumn(name = "claim_id")
 private DamageClaim claim;
 
 private String evidenceType;
 private String fileUrl;
-
 private LocalDateTime uploadedAt;
 
-public Evidence() {
-}
-
 @PrePersist
-public void setUploadedAt() {
+public void onUpload() {
 this.uploadedAt = LocalDateTime.now();
 }
 
-public Long getId() {
-return id;
-}
+public Evidence() {}
+
 }
