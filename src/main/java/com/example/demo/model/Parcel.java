@@ -29,5 +29,12 @@ this.senderName = senderName;
 this.receiverName = receiverName;
 this.weightKg = weightKg;
 }
+public Long getId() { return id; }
+public String getTrackingNumber() { return trackingNumber; }
+public Double getWeightKg() { return weightKg; }
+
+public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
+    }
 
 }
