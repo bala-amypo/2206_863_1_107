@@ -5,36 +5,43 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "parcels", uniqueConstraints = @UniqueConstraint(columnNames = "trackingNumber"))
+@Table(name = "parcels")
 public class Parcel {
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 
+@Column(unique = true)
 private String trackingNumber;
+
 private String senderName;
 private String receiverName;
 private Double weightKg;
 private LocalDateTime deliveredAt;
 
-@OneToMany(mappedBy = "parcel", cascade = CascadeType.ALL)
+@OneToMany(mappedBy = "parcel")
 private List<DamageClaim> claims;
 
 public Parcel() {}
 
-public Parcel(String trackingNumber, String senderName, String receiverName, Double weightKg) {
-this.trackingNumber = trackingNumber;
-this.senderName = senderName;
-this.receiverName = receiverName;
-this.weightKg = weightKg;
+public Long getId() {
+return id;
 }
-public Long getId() { return id; }
-public String getTrackingNumber() { return trackingNumber; }
-public Double getWeightKg() { return weightKg; }
+
+public String getTrackingNumber() {
+return trackingNumber;
+}
 
 public void setTrackingNumber(String trackingNumber) {
-    this.trackingNumber = trackingNumber;
-    }
+this.trackingNumber = trackingNumber;
+}
 
+public Double getWeightKg() {
+return weightKg;
+}
+
+public void setWeightKg(Double weightKg) {
+this.weightKg = weightKg;
+}
 }

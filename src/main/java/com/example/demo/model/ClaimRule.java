@@ -20,13 +20,15 @@ private Set<DamageClaim> claims;
 
 public ClaimRule() {}
 
-public ClaimRule(String ruleName, String conditionExpression, Double weight) {
-this.ruleName = ruleName;
-this.conditionExpression = conditionExpression;
+public Long getId() {
+return id;
+}
+
+public Double getWeight() {
+return weight;
+}
+
+public void setWeight(Double weight) {
 this.weight = weight;
 }
-public Double getWeight() {
-    return weight;
-    }
-
 }

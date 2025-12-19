@@ -5,22 +5,21 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "evidence")
-public class Evidence {
+public class Evidence {}
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 
 @ManyToOne
-@JoinColumn(name = "claim_id")
 private DamageClaim claim;
 
 private String evidenceType;
 private String fileUrl;
+
 private LocalDateTime uploadedAt;
 
-public Evidence() {
-}
+public Evidence() {}
 
 @PrePersist
 public void onUpload() {
@@ -37,25 +36,5 @@ return claim;
 
 public void setClaim(DamageClaim claim) {
 this.claim = claim;
-}
-
-public String getEvidenceType() {
-return evidenceType;
-}
-
-public void setEvidenceType(String evidenceType) {
-this.evidenceType = evidenceType;
-}
-
-public String getFileUrl() {
-return fileUrl;
-}
-
-public void setFileUrl(String fileUrl) {
-this.fileUrl = fileUrl;
-}
-
-public LocalDateTime getUploadedAt() {
-return uploadedAt;
 }
 }

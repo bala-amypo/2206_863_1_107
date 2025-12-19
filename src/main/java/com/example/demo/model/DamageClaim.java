@@ -16,23 +16,41 @@ private Long id;
 private Parcel parcel;
 
 private String claimDescription;
+
+private LocalDateTime filedAt;
+
 private String status;
+
 private Double score;
 
 @ManyToMany
 private Set<ClaimRule> appliedRules;
 
-private LocalDateTime filedAt;
+public DamageClaim() {}
 
 @PrePersist
 public void onCreate() {
 this.filedAt = LocalDateTime.now();
 this.status = "PENDING";
 }
-public void setParcel(Parcel parcel) {
-    this.parcel = parcel;
-    }
-public DamageClaim() {}
 
-// getters and setters
+public Long getId() {
+return id;
+}
+
+public Parcel getParcel() {
+return parcel;
+}
+
+public void setParcel(Parcel parcel) {
+this.parcel = parcel;
+}
+
+public String getClaimDescription() {
+return claimDescription;
+}
+
+public void setClaimDescription(String claimDescription) {
+this.claimDescription = claimDescription;
+}
 }
