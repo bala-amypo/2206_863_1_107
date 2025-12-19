@@ -1,51 +1,31 @@
-    package com.example.demo.model;
+package com.example.demo.model;
 
-    import jakarta.persistence.*;
+import jakarta.persistence.*;
+import java.util.List;
 
-    @Entity
-    @Table(name = "users")
-    public class User {
+@Entity
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 
-    private String name;
+private String name;
+private String email;
+private String password;
+private String role;
 
-    @Column(unique = true)
-    private String email;
+@OneToMany
+private List<Parcel> parcels;
 
-    private String password;
+public User() {}
 
-    private String role;
+public User(String name, String email, String password, String role) {
+this.name = name;
+this.email = email;
+this.password = password;
+this.role = role;
+}
 
-    public User() {
-    }
-
-    public User(String name, String email, String password, String role) {
-    this.name = name;
-    this.email = email;
-    this.password = password;
-    this.role = role;
-    }
-
-    public Long getId() {
-    return id;
-    }
-
-    public String getEmail() {
-    return email;
-    }
-
-    public String getRole() {
-    return role;
-    }
-
-    public void setEmail(String email) {
-    this.email = email;
-    }
-
-    public void setRole(String role) {
-    this.role = role;
-    }
-    }
+}

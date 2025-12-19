@@ -2,7 +2,6 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,42 +13,24 @@ public class DamageClaim {
 private Long id;
 
 @ManyToOne
-@JoinColumn(name = "parcel_id")
 private Parcel parcel;
 
 private String claimDescription;
-
-private LocalDateTime filedAt;
-
 private String status;
-
 private Double score;
 
 @ManyToMany
-@JoinTable(
-name = "claim_rule_mapping",
-joinColumns = @JoinColumn(name = "claim_id"),
-inverseJoinColumns = @JoinColumn(name = "rule_id")
-)
 private Set<ClaimRule> appliedRules;
 
-@OneToMany(mappedBy = "claim")
-private List<Evidence> evidenceList;
+private LocalDateTime filedAt;
 
-public DamageClaim() {
+@PrePersist
+public void onCreate() {
+this.filedAt = LocalDateTime.now();
 this.status = "PENDING";
 }
 
-@PrePersist
-public void setFiledAt() {
-this.filedAt = LocalDateTime.now();
-}
+public DamageClaim() {}
 
-public Long getId() {
-return id;
-}
-
-public String getStatus() {
-return status;
-}
+// getters and setters
 }
