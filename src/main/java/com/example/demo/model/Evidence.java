@@ -26,6 +26,6 @@ public void setClaim(DamageClaim claim) {}
     this.claim = claim;
     }
 
-public Evidence() {}
+public Evidence() {
 
     }

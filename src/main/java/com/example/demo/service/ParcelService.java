@@ -1,8 +1,10 @@
+package com.example.demo.service;
+
 import com.example.demo.model.Parcel;
 
-public interface ParcelService {}
+public interface ParcelService {
 
-    Parcel addParcel(Parcel parcel);
+Parcel addParcel(Parcel parcel);
 
-        Parcel getByTrackingNumber(String trackingNumber);
-        }
+Parcel getByTrackingNumber(String trackingNumber);
+}
