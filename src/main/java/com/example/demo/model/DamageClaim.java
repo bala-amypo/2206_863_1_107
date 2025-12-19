@@ -29,7 +29,9 @@ public void onCreate() {
 this.filedAt = LocalDateTime.now();
 this.status = "PENDING";
 }
-
+public void setParcel(Parcel parcel) {
+    this.parcel = parcel;
+    }
 public DamageClaim() {}
 
 // getters and setters

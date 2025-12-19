@@ -22,7 +22,10 @@ private LocalDateTime uploadedAt;
 public void onUpload() {
 this.uploadedAt = LocalDateTime.now();
 }
+public void setClaim(DamageClaim claim) {}
+    this.claim = claim;
+    }
 
 public Evidence() {}
 
-}
+    }

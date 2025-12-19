@@ -25,5 +25,8 @@ this.ruleName = ruleName;
 this.conditionExpression = conditionExpression;
 this.weight = weight;
 }
+public Double getWeight() {
+    return weight;
+    }
 
 }
