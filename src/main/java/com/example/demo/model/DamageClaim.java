@@ -17,18 +17,16 @@ private Parcel parcel;
 
 private String claimDescription;
 private String status;
-private Double score;
 
 private LocalDateTime filedAt;
 
 @PrePersist
-public void beforeSave() {
+public void onCreate() {
 filedAt = LocalDateTime.now();
 status = "PENDING";
 }
 
-public DamageClaim() {
-}
+public DamageClaim() {}
 
 public Long getId() {
 return id;

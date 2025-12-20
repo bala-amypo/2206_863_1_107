@@ -1,46 +1,37 @@
-    package com.example.demo.model;
+package com.example.demo.model;
 
-    import jakarta.persistence.*;
-    import java.util.List;
+import jakarta.persistence.*;
+import java.util.List;
 
-    @Entity
-    @Table(name = "parcels")
-    public class Parcel {
+@Entity
+@Table(name = "parcels")
+public class Parcel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 
-    @Column(unique = true)
-    private String trackingNumber;
+@Column(unique = true)
+private String trackingNumber;
 
-    private String senderName;
-    private String receiverName;
-    private Double weightKg;
+private String senderName;
+private String receiverName;
+private Double weightKg;
 
-    @OneToMany(mappedBy = "parcel")
-    private List<DamageClaim> claims;
+@OneToMany(mappedBy = "parcel")
+private List<DamageClaim> claims;
 
-    public Parcel() {
-    }
+public Parcel() {}
 
-    public Long getId() {
-    return id;
-    }
+public Long getId() {
+return id;
+}
 
-    public String getTrackingNumber() {
-    return trackingNumber;
-    }
+public String getTrackingNumber() {
+return trackingNumber;
+}
 
-    public void setTrackingNumber(String trackingNumber) {
-    this.trackingNumber = trackingNumber;
-    }
-
-    public Double getWeightKg() {
-    return weightKg;
-    }
-
-    public void setWeightKg(Double weightKg) {
-    this.weightKg = weightKg;
-    }
-    }
+public Double getWeightKg() {
+return weightKg;
+}
+}
