@@ -2,32 +2,27 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Parcel;
 import com.example.demo.service.ParcelService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/parcels")
+@RequestMapping("/api/parcels")
+@Tag(name = "Parcels")
 public class ParcelController {
 
-private final ParcelService service;
+    private final ParcelService parcelService;
 
-public ParcelController(ParcelService service) {
-this.service = service;
-}
+        public ParcelController(ParcelService parcelService) {
+                this.parcelService = parcelService;
+                    }
 
-@PostMapping
-public Parcel add(@RequestBody Parcel parcel) {
-return service.add(parcel);
-}
+                        @PostMapping
+                            public Parcel addParcel(@RequestBody Parcel parcel) {
+                                    return parcelService.add(parcel);
+                                        }
 
-@GetMapping("/{tracking}")
-public Parcel get(@PathVariable String tracking) {
-return service.getByTracking(tracking);
-}
-
-@GetMapping
-public List<Parcel> all() {
-return service.getAll();
-}
-}
+                                            @GetMapping("/tracking/{trackingNumber}")
+                                                public Parcel getParcel(@PathVariable String trackingNumber) {
+                                                        return parcelService.getByTracking(trackingNumber);
+                                                            }
+                                                            }
