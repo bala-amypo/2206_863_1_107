@@ -2,26 +2,33 @@ package com.example.demo.controller;
 
 import com.example.demo.model.DamageClaim;
 import com.example.demo.service.DamageClaimService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/claims")
+@RequestMapping("/api/claims")
+@Tag(name = "Damage Claims")
 public class DamageClaimController {
 
-private final DamageClaimService service;
+private final DamageClaimService damageClaimService;
 
-public DamageClaimController(DamageClaimService service) {
-this.service = service;
+public DamageClaimController(DamageClaimService damageClaimService) {
+this.damageClaimService = damageClaimService;
 }
 
-@PostMapping("/{parcelId}")
-public DamageClaim file(@PathVariable Long parcelId,
+@PostMapping("/file/{parcelId}")
+public DamageClaim fileClaim(@PathVariable Long parcelId,
 @RequestBody DamageClaim claim) {
-return service.file(parcelId, claim);
+return damageClaimService.file(parcelId, claim);
 }
 
-@GetMapping("/{id}")
-public DamageClaim get(@PathVariable Long id) {
-return service.get(id);
+@PutMapping("/evaluate/{claimId}")
+public DamageClaim evaluateClaim(@PathVariable Long claimId) {
+return damageClaimService.get(claimId);
+}
+
+@GetMapping("/{claimId}")
+public DamageClaim getClaim(@PathVariable Long claimId) {
+return damageClaimService.get(claimId);
 }
 }

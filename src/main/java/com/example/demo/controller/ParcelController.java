@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Parcels")
 public class ParcelController {
 
-    private final ParcelService parcelService;
+private final ParcelService parcelService;
 
-        public ParcelController(ParcelService parcelService) {
-                this.parcelService = parcelService;
-                    }
+public ParcelController(ParcelService parcelService) {
+this.parcelService = parcelService;
+}
 
-                        @PostMapping
-                            public Parcel addParcel(@RequestBody Parcel parcel) {
-                                    return parcelService.add(parcel);
-                                        }
+@PostMapping
+public Parcel addParcel(@RequestBody Parcel parcel) {
+return parcelService.add(parcel);
+}
 
-                                            @GetMapping("/tracking/{trackingNumber}")
-                                                public Parcel getParcel(@PathVariable String trackingNumber) {
-                                                        return parcelService.getByTracking(trackingNumber);
-                                                            }
-                                                            }
+@GetMapping("/tracking/{trackingNumber}")
+public Parcel getParcel(@PathVariable String trackingNumber) {
+return parcelService.getByTracking(trackingNumber);
+}
+}
