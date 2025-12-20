@@ -1,47 +1,38 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
-@Table(name = "parcels")
+@Table(name = "parcels", uniqueConstraints = {
+@UniqueConstraint(columnNames = "trackingNumber")
+})
 public class Parcel {
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 
-@Column(unique = true)
 private String trackingNumber;
-
 private String senderName;
 private String receiverName;
 private Double weightKg;
-private LocalDateTime deliveredAt;
-
-@OneToMany(mappedBy = "parcel")
-private List<DamageClaim> claims;
 
 public Parcel() {}
 
-public Long getId() {
-return id;
-}
-
-public String getTrackingNumber() {
-return trackingNumber;
-}
-
-public void setTrackingNumber(String trackingNumber) {
+public Parcel(String trackingNumber, String senderName, String receiverName, Double weightKg) {
 this.trackingNumber = trackingNumber;
-}
-
-public Double getWeightKg() {
-return weightKg;
-}
-
-public void setWeightKg(Double weightKg) {
+this.senderName = senderName;
+this.receiverName = receiverName;
 this.weightKg = weightKg;
 }
+
+public Long getId() { return id; }
+public String getTrackingNumber() { return trackingNumber; }
+public void setTrackingNumber(String trackingNumber) { this.trackingNumber = trackingNumber; }
+public String getSenderName() { return senderName; }
+public void setSenderName(String senderName) { this.senderName = senderName; }
+public String getReceiverName() { return receiverName; }
+public void setReceiverName(String receiverName) { this.receiverName = receiverName; }
+public Double getWeightKg() { return weightKg; }
+public void setWeightKg(Double weightKg) { this.weightKg = weightKg; }
 }
