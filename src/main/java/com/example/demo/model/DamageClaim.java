@@ -2,7 +2,6 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Entity
 @Table(name = "damage_claims")
@@ -13,44 +12,29 @@ public class DamageClaim {
 private Long id;
 
 @ManyToOne
+@JoinColumn(name = "parcel_id")
 private Parcel parcel;
 
 private String claimDescription;
+private String status;
+private Double score;
 
 private LocalDateTime filedAt;
 
-private String status;
-
-private Double score;
-
-@ManyToMany
-private Set<ClaimRule> appliedRules;
-
-public DamageClaim() {}
-
 @PrePersist
-public void onCreate() {
-this.filedAt = LocalDateTime.now();
-this.status = "PENDING";
+public void beforeSave() {
+filedAt = LocalDateTime.now();
+status = "PENDING";
+}
+
+public DamageClaim() {
 }
 
 public Long getId() {
 return id;
 }
 
-public Parcel getParcel() {
-return parcel;
-}
-
 public void setParcel(Parcel parcel) {
 this.parcel = parcel;
-}
-
-public String getClaimDescription() {
-return claimDescription;
-}
-
-public void setClaimDescription(String claimDescription) {
-this.claimDescription = claimDescription;
 }
 }
