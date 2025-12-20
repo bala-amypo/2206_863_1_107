@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/claims")
 public class DamageClaimController {
 
-private final DamageClaimService damageClaimService;
+private final DamageClaimService service;
 
-public DamageClaimController(DamageClaimService damageClaimService) {
-this.damageClaimService = damageClaimService;
+public DamageClaimController(DamageClaimService service) {
+this.service = service;
 }
 
 @PostMapping("/{parcelId}")
 public DamageClaim file(@PathVariable Long parcelId,
 @RequestBody DamageClaim claim) {
-return damageClaimService.fileClaim(parcelId, claim);
+return service.file(parcelId, claim);
 }
 
 @GetMapping("/{id}")
 public DamageClaim get(@PathVariable Long id) {
-return damageClaimService.getClaim(id);
+return service.get(id);
 }
 }

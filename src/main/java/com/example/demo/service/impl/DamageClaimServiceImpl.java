@@ -1,37 +1,32 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.DamageClaim;
-import com.example.demo.model.Parcel;
-import com.example.demo.repository.DamageClaimRepository;
-import com.example.demo.repository.ParcelRepository;
+import com.example.demo.model.*;
+import com.example.demo.repository.*;
 import com.example.demo.service.DamageClaimService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DamageClaimServiceImpl implements DamageClaimService {
 
-private final ParcelRepository parcelRepository;
-private final DamageClaimRepository claimRepository;
+private final ParcelRepository parcelRepo;
+private final DamageClaimRepository claimRepo;
 
-public DamageClaimServiceImpl(ParcelRepository parcelRepository,
-DamageClaimRepository claimRepository) {
-this.parcelRepository = parcelRepository;
-this.claimRepository = claimRepository;
+public DamageClaimServiceImpl(ParcelRepository parcelRepo,
+DamageClaimRepository claimRepo) {
+this.parcelRepo = parcelRepo;
+this.claimRepo = claimRepo;
 }
 
-@Override
-public DamageClaim fileClaim(Long parcelId, DamageClaim claim) {
-Parcel parcel = parcelRepository.findById(parcelId)
+public DamageClaim file(Long parcelId, DamageClaim claim) {
+Parcel parcel = parcelRepo.findById(parcelId)
 .orElseThrow(() -> new ResourceNotFoundException("parcel not found"));
-
 claim.setParcel(parcel);
-return claimRepository.save(claim);
+return claimRepo.save(claim);
 }
 
-@Override
-public DamageClaim getClaim(Long id) {
-return claimRepository.findById(id)
+public DamageClaim get(Long id) {
+return claimRepo.findById(id)
 .orElseThrow(() -> new ResourceNotFoundException("claim not found"));
 }
 }

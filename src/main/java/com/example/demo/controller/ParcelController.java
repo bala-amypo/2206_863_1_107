@@ -10,29 +10,24 @@ import java.util.List;
 @RequestMapping("/parcels")
 public class ParcelController {
 
-private final ParcelService parcelService;
+private final ParcelService service;
 
-public ParcelController(ParcelService parcelService) {
-this.parcelService = parcelService;
+public ParcelController(ParcelService service) {
+this.service = service;
 }
 
 @PostMapping
-public Parcel create(@RequestBody Parcel parcel) {
-return parcelService.create(parcel);
+public Parcel add(@RequestBody Parcel parcel) {
+return service.add(parcel);
 }
 
 @GetMapping("/{tracking}")
 public Parcel get(@PathVariable String tracking) {
-return parcelService.getByTracking(tracking);
+return service.getByTracking(tracking);
 }
 
 @GetMapping
-public List<Parcel> getAll() {
-return parcelService.getAll();
-}
-
-@DeleteMapping("/{id}")
-public void delete(@PathVariable Long id) {
-parcelService.delete(id);
+public List<Parcel> all() {
+return service.getAll();
 }
 }
