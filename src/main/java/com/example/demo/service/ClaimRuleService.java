@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ClaimRuleService {
 
-ClaimRule addRule(ClaimRule rule);
+    ClaimRule addRule(ClaimRule rule);
 
-List<ClaimRule> getAllRules();
-}
+        List<ClaimRule> getAllRules();
+        }
