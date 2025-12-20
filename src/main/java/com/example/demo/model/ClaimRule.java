@@ -11,11 +11,20 @@ public class ClaimRule {
 private Long id;
 
 private String ruleName;
+private String conditionExpression;
 private Double weight;
 
 public ClaimRule() {}
 
 public Long getId() {
 return id;
+}
+
+public String getRuleName() {
+return ruleName;
+}
+
+public Double getWeight() {
+return weight;
 }
 }
