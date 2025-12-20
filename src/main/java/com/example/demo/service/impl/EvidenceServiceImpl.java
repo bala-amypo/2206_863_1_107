@@ -16,7 +16,7 @@ public class EvidenceServiceImpl implements EvidenceService {
 private final EvidenceRepository evidenceRepository;
 private final DamageClaimRepository claimRepository;
 
-public EvidenceServiceImpl(EvidenceRepository evidenceRepository,)
+public EvidenceServiceImpl(EvidenceRepository evidenceRepository,
 DamageClaimRepository claimRepository) {
 this.evidenceRepository = evidenceRepository;
 this.claimRepository = claimRepository;
