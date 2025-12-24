@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/parcels")
-@Tag(name = "Parcels")
 public class ParcelController {
 
 private final ParcelService parcelService;
@@ -17,12 +16,12 @@ this.parcelService = parcelService;
 }
 
 @PostMapping
-public Parcel addParcel(@RequestBody Parcel parcel) {
-return parcelService.add(parcel);
+public Parcel add(@RequestBody Parcel parcel) {
+return parcelService.addParcel(parcel);
 }
 
 @GetMapping("/tracking/{trackingNumber}")
-public Parcel getParcel(@PathVariable String trackingNumber) {
-return parcelService.getByTracking(trackingNumber);
+public Parcel getByTracking(@PathVariable String trackingNumber) {
+return parcelService.getByTrackingNumber(trackingNumber);
 }
 }
