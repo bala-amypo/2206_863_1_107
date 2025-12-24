@@ -1,9 +1,9 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.exception.BadRequestException;
 import com.example.demo.model.ClaimRule;
 import com.example.demo.repository.ClaimRuleRepository;
 import com.example.demo.service.ClaimRuleService;
+import com.example.demo.exception.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,22 +11,20 @@ import java.util.List;
 @Service
 public class ClaimRuleServiceImpl implements ClaimRuleService {
 
-private final ClaimRuleRepository ruleRepository;
+private final ClaimRuleRepository repo;
 
-public ClaimRuleServiceImpl(ClaimRuleRepository ruleRepository) {
-this.ruleRepository = ruleRepository;
+public ClaimRuleServiceImpl(ClaimRuleRepository repo) {
+this.repo = repo;
 }
 
-@Override
 public ClaimRule addRule(ClaimRule rule) {
-if (rule.getWeight() == null || rule.getWeight() < 0) {
-throw new BadRequestException("weight invalid");
+if (rule.getWeight() < 0) {
+throw new BadRequestException("weight");
 }
-return ruleRepository.save(rule);
+return repo.save(rule);
 }
 
-@Override
 public List<ClaimRule> getAllRules() {
-return ruleRepository.findAll();
+return repo.findAll();
 }
 }

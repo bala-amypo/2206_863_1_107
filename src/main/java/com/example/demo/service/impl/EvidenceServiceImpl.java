@@ -1,11 +1,9 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.DamageClaim;
-import com.example.demo.model.Evidence;
-import com.example.demo.repository.DamageClaimRepository;
-import com.example.demo.repository.EvidenceRepository;
+import com.example.demo.model.*;
+import com.example.demo.repository.*;
 import com.example.demo.service.EvidenceService;
+import com.example.demo.exception.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,26 +11,25 @@ import java.util.List;
 @Service
 public class EvidenceServiceImpl implements EvidenceService {
 
-private final EvidenceRepository evidenceRepository;
-private final DamageClaimRepository claimRepository;
+private final EvidenceRepository evidenceRepo;
+private final DamageClaimRepository claimRepo;
 
-public EvidenceServiceImpl(EvidenceRepository evidenceRepository,
-DamageClaimRepository claimRepository) {
-this.evidenceRepository = evidenceRepository;
-this.claimRepository = claimRepository;
+public EvidenceServiceImpl(
+EvidenceRepository evidenceRepo,
+DamageClaimRepository claimRepo) {
+
+this.evidenceRepo = evidenceRepo;
+this.claimRepo = claimRepo;
 }
 
-@Override
 public Evidence uploadEvidence(Long claimId, Evidence evidence) {
-DamageClaim claim = claimRepository.findById(claimId)
+DamageClaim claim = claimRepo.findById(claimId)
 .orElseThrow(() -> new ResourceNotFoundException("claim not found"));
-
 evidence.setClaim(claim);
-return evidenceRepository.save(evidence);
+return evidenceRepo.save(evidence);
 }
 
-@Override
 public List<Evidence> getEvidenceForClaim(Long claimId) {
-return evidenceRepository.findByClaim_Id(claimId);
+return evidenceRepo.findByClaim_Id(claimId);
 }
 }
