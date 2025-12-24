@@ -16,15 +16,6 @@ private Double weight;
 
 public ClaimRule() {}
 
-public Long getId() {
-return id;
-}
-
-public String getRuleName() {
-return ruleName;
-}
-
-public Double getWeight() {
-return weight;
-}
+public Double getWeight() { return weight; }
+public String getConditionExpression() { return conditionExpression; }
 }
