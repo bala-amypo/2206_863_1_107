@@ -1,9 +1,10 @@
-    package com.example.demo.repository;
+package com.example.demo.repository;
 
-    import com.example.demo.model.Parcel;
-    import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.demo.model.Parcel;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
-    public interface ParcelRepository extends JpaRepository<Parcel, Long> {
+public interface ParcelRepository extends JpaRepository<Parcel, Long> {
     boolean existsByTrackingNumber(String trackingNumber);
-    Parcel findByTrackingNumber(String trackingNumber);
-    }
+    Optional<Parcel> findByTrackingNumber(String trackingNumber);
+}
