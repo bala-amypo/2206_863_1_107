@@ -1,9 +1,9 @@
-    package com.example.demo.service;
+package com.example.demo.service;
 
-    import com.example.demo.model.ClaimRule;
-    import java.util.List;
+import com.example.demo.model.ClaimRule;
+import java.util.List;
 
-    public interface ClaimRuleService {
+public interface ClaimRuleService {
     ClaimRule addRule(ClaimRule rule);
     List<ClaimRule> getAllRules();
-    }
+}
