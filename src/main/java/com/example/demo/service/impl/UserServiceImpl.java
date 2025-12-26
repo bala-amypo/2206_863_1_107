@@ -1,32 +1,41 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.exception.BadRequestException;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
-import com.example.demo.exception.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-
-    private final UserRepository repo;
-
-        public UserServiceImpl(UserRepository repo) {
-                this.repo = repo;
-                    }
-
-                        public User register(User user) {
-                                if (repo.existsByEmail(user.getEmail())) {
-                                            throw new BadRequestException("email exists");
-                                                    }
-                                                            return repo.save(user);
-                                                                }
-
-                                                                    public User findByEmail(String email) {
-                                                                            User user = repo.findByEmail(email);
-                                                                                    if (user == null) {
-                                                                                                throw new ResourceNotFoundException("user not found");
-                                                                                                        }
-                                                                                                                return user;
-                                                                                                                    }
-                                                                                                                    }
+    
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+    
+    @Override
+    public User register(User user) {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new BadRequestException("User with this email already exists");
+        }
+        
+        if (user.getRole() == null) {
+            user.setRole("AGENT");
+        }
+        
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
+    }
+    
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email)
+            .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    }
+}
